@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <form>
+          <input type="text"  v-model="number">
+          <button type="button" v-click="increment">增加</button>
+        </form>
+        <h3 v-bind="number"></h3>
+    </div>
+<script>
+    function myVue(options){
+        this._init(options);
+    }
+    //初始化构造函数，为它增加一个_init属性
+    myVue.prototype._init = function(options){
+        this.$options = options;
+        this.$el = document.querySelector(options.el);
+        this.$data = options.data;
+        this.$methods = options.methods;
+        this._obverse (this.$data);
+        this._binding = {};   //_binding保存着model与view的映射关系，也就是我们前面定义的Watcher的实例。当model改变时，我们会触发其中的指令类更新，保证view也能实时更新
+    }
+    //实现_obverse函数，对data进行处理，重写data的set和get函数，改造_init函数
+    myVue.prototype._obverse = function (obj) {
+        let value;
+        for(key in obj){
+            if(obj.hasOwnProperty(key)){
+                value = obj[key];
+                if(typeof value === 'object'){
+                    this._obverse(value)
+                }
+                Object.defineProperty(this.$data,key,{
+                    enumerable:true,
+                    configurable:true,
+                    get:function(){
+                        console.log(`获取${value}`)
+                        return value
+                    },
+                    set:function(newVal){
+                        console.log(`update${newVal}`);
+                        if(value !== newVal){
+                            value = newVal
+                        }
+                    }
+                })
+            }
+        }
+      }
+      //指令类watcher，用来绑定更新函数，实现对dom元素的更新
+      function Watcher(name,el,vm,exp,attr) {
+          this.name = name; //指令名称，例如文本节点，该值设为"text"
+          this.el = el;  //指令对应的DOM元素
+          this.vm = vm; //指令所属myVue实例
+          this.exp = exp; //指令对应的值，本例如"number"
+          this.attr = attr; //绑定的属性值，本例为"innerHTML"
+
+          this.update();
+      }
+      Watcher.prototype.update = function () {
+          this.el[this.attr] = this.vm.$data[this.exp]
+      }
+</script>
+</body>
+</html>
