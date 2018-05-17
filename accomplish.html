@@ -30,37 +30,40 @@
     }
     //实现_obverse函数，对data进行处理，重写data的set和get函数，改造_init函数
     myVue.prototype._obverse = function (obj) {
-        let value;
-        for(key in obj){
-            if(obj.hasOwnProperty(key)){
-                this._binding[key] = {_directives: []}// 按照前面的数据，_binding = {number: _directives: []} 
-                value = obj[key];
-                if(typeof value === 'object'){
-                    this._obverse(value)
-                }
-                let binding = this._binding[key];
-                Object.defineProperty(this.$data,key,{
-                    enumerable:true,
-                    configurable:true,
-                    get:function(){
-                        console.log(`获取${value}`)
-                        return value
-                    },
-                    set:function(newVal){
-                        console.log(`update${newVal}`);
-                        if(value !== newVal){
-                            value = newVal;
-                            binding._directives.forEach((item)=>{// 当number改变时，触发_binding[number]._directives 中的绑定的Watcher类的更新
-                                item.update()
-                            })
-                        }
-                    }
-                })
-            }
+        var _this = this;
+    Object.keys(obj).forEach(function (key) {
+      if (obj.hasOwnProperty(key)) {
+        _this._binding[key] = {                                                                                                                                                          
+          _directives: []
+        };
+        console.log(_this._binding[key])
+        var value = obj[key];
+        if (typeof value === 'object') {
+          _this._obverse(value);
         }
+        var binding = _this._binding[key];
+        Object.defineProperty(_this.$data, key, {
+          enumerable: true,
+          configurable: true,
+          get: function () {
+            console.log(`${key}获取${value}`);
+            return value;
+          },
+          set: function (newVal) {
+            console.log(`${key}更新${newVal}`);
+            if (value !== newVal) {
+              value = newVal;
+              binding._directives.forEach(function (item) {
+                item.update();
+              })
+            }
+          }
+        })
+      }
+    })
       }
       //定义一个_compile函数，用来解析我们的指令（v-bind,v-model,v-clickde）等，并在这个过程中对view与model进行绑定。
-      myVue.prototype._complie = function (root) { root 为 id为app的Element元素，也就是我们的根元素
+      myVue.prototype._complie = function (root) { //root 为 id为app的Element元素，也就是我们的根元素
     var _this = this;
     var nodes = root.children;
     for (var i = 0; i < nodes.length; i++) {
@@ -122,7 +125,23 @@
       Watcher.prototype.update = function () {
           this.el[this.attr] = this.vm.$data[this.exp]
       }
-
+      window.onload = function() {
+    var app = new myVue({
+      el:'#app',
+      data: {
+        number: 0,
+        count: 0,
+      },
+      methods: {
+        increment: function() {
+          this.number ++;
+        },
+        incre: function() {
+          this.count ++;
+        }
+      }
+    })
+  }
 </script>
 </body>
 </html>

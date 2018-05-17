@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <p>{{msg}}</p>
-    <demo13></demo13>
+    <demo14></demo14>
   </div>
 </template>
 
@@ -12,7 +12,8 @@ import demo09 from '../src/assets/components/demo09';
 import demo10 from '../src/assets/components/demo10';
 import demo11 from '../src/assets/components/demo11';
 import demo12 from '../src/assets/components/demo12_class';
-import demo13 from '../src/assets/components/demo13_model'
+import demo13 from '../src/assets/components/demo13_model';
+import demo14 from '../src/assets/components/demo14'
 export default {
   name: 'app',
   data () {
@@ -20,7 +21,7 @@ export default {
       msg: 'Welcome to Your Vue.js App'
     }
   },
-  components:{demo04,demo08,demo09,demo10,demo11,demo12,demo13}
+  components:{demo04,demo08,demo09,demo10,demo11,demo12,demo13,demo14}
 }
 </script>
 
