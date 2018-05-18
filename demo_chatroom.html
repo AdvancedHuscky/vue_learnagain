@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+    <script>
+        Vue.component('my-chatroom',{
+            template:`
+            <div>
+            <h2>this is a chatroom</h2>
+            <my-user @sendEvent = "rcvMsg"></my-user>
+            <ul>
+                <li></li>    
+            </ul>
+            </div>
+            `,
+            data(){
+                return{
+                    msgList:[]
+                }
+            },
+            methods:{
+                rcvMsg(msg){
+
+                }
+            }
+        }),
+        Vue.component('my-user',{
+            template:`
+            <div>
+                <label>{{uname}}<input type="text" v-model="inputValue"/></label>
+                <button @click = "sendMsg">send</button>
+            </div>
+            `,
+            props:{
+                uname
+            },
+            data(){
+                return{
+                   inputValue:'', 
+                }
+            },
+            methods:{
+                sendMsg(){
+                    this.$emit('sendEvent',this.inputValue)
+                }
+            }
+        })
+        new Vue({
+            el:'#app',
+
+        })
+    </script>
+</body>
+</html>
