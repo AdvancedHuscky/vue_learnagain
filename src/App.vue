@@ -1,11 +1,10 @@
 <template>
   <div id="app">
     <p>{{msg}}</p>
-    <demo24></demo24>
-    <p>aaaaa</p>
+    <demo25></demo25>
   </div>
 </template>
-
+  
 <script>
 import demo04 from '../src/assets/components/demo04_if';
 import demo08 from '../src/assets/components/demo08_event';
@@ -24,7 +23,8 @@ import demo20 from '../src/assets/components/demo20';
 import demo21 from '../src/assets/components/demo21';
 import demo22 from '../src/assets/components/demo22_emit';
 import demo23 from '../src/assets/components/demo23_parent';
-import demo24 from '../src/assets/components/demo24_parent'
+import demo24 from '../src/assets/components/demo24_parent';
+import demo25 from '../src/assets/components/demo25_parent'
 export default {
   name: 'app',
   data () {
@@ -32,7 +32,7 @@ export default {
       msg: 'Welcome to Your Vue.js App'
     }
   },
-  components:{demo04,demo08,demo09,demo10,demo11,demo12,demo13,demo14,demo15,demo16,demo17,demo18,demo19,demo20,demo21,demo22,demo23,demo24},
+  components:{demo04,demo08,demo09,demo10,demo11,demo12,demo13,demo14,demo15,demo16,demo17,demo18,demo19,demo20,demo21,demo22,demo23,demo24,demo25},
   methods:{
     rcvMsg(msg){
       console.log(msg);
