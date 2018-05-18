@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="example">
+        <my-login></my-login>
+        <my-input my-id="uname" input-name="username" mytype="text"></my-input>
+        <my-input my-id="upwd" input-name="password" mytype="password"></my-input>
+        <my-button></my-button>
+    </div>
+    <script>
+        Vue.component('my-login',{
+            template:`
+                <form>
+                    <h2>this is login page</h2>
+                </form>
+            `
+        });
+        Vue.component('my-input',{
+            template:`
+                <div>
+                    <label for="myId">{{inputName}}</label>
+                    <input id="myId" type="mytype"/>
+                </div>
+            `,
+            props:{
+                inputName:String,
+                myId:String,
+                mytype:String
+            }
+        });
+        Vue.component('my-button',{
+            template:`
+                <button>jsjsjsj</button>
+            `
+        })
+        new Vue({
+            el:'#example'
+        })
+    </script>
+</body>
+</html>
