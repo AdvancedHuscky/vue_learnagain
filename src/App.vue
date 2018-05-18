@@ -1,11 +1,13 @@
 <template>
   <div id="app">
     <p>{{msg}}</p>
-    <demo25></demo25>
+    <demo26></demo26>
   </div>
 </template>
-  
+
 <script>
+import Vue from 'vue';
+const Bus = new Vue();
 import demo04 from '../src/assets/components/demo04_if';
 import demo08 from '../src/assets/components/demo08_event';
 import demo09 from '../src/assets/components/demo09';
@@ -24,15 +26,16 @@ import demo21 from '../src/assets/components/demo21';
 import demo22 from '../src/assets/components/demo22_emit';
 import demo23 from '../src/assets/components/demo23_parent';
 import demo24 from '../src/assets/components/demo24_parent';
-import demo25 from '../src/assets/components/demo25_parent'
+import demo25 from '../src/assets/components/demo25_parent';
+import demo26 from '../src/assets/components/demo26_todo'
 export default {
   name: 'app',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
     }
   },
-  components:{demo04,demo08,demo09,demo10,demo11,demo12,demo13,demo14,demo15,demo16,demo17,demo18,demo19,demo20,demo21,demo22,demo23,demo24,demo25},
+  components:{demo04,demo08,demo09,demo10,demo11,demo12,demo13,demo14,demo15,demo16,demo17,demo18,demo19,demo20,demo21,demo22,demo23,demo24,demo25,demo26},
   methods:{
     rcvMsg(msg){
       console.log(msg);
