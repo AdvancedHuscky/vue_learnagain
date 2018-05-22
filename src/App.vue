@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <p>{{msg}}</p>
-    <demo28></demo28>
+    <demo29></demo29>
   </div>
 </template>
 
@@ -29,7 +29,8 @@ import demo24 from '../src/assets/components/demo24_parent';
 import demo25 from '../src/assets/components/demo25_parent';
 import demo26 from '../src/assets/components/demo26_todo';
 import demo27 from '../src/assets/components/demo27_animate'
-import demo28 from '../src/assets/components/demo28_spa'
+import demo28 from '../src/assets/components/demo28_spa';
+import demo29 from '../src/assets/components/demo29vuex'
 export default {
   name: 'app',
   data () {
@@ -37,7 +38,7 @@ export default {
       msg: 'Welcome to Your Vue.js App',
     }
   },
-  components:{demo04,demo08,demo09,demo10,demo11,demo12,demo13,demo14,demo15,demo16,demo17,demo18,demo19,demo20,demo21,demo22,demo23,demo24,demo25,demo26,demo27,demo28},
+  components:{demo04,demo08,demo09,demo10,demo11,demo12,demo13,demo14,demo15,demo16,demo17,demo18,demo19,demo20,demo21,demo22,demo23,demo24,demo25,demo26,demo27,demo28,demo29},
   methods:{
     rcvMsg(msg){
       console.log(msg);
